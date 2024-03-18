@@ -1,0 +1,68 @@
+{
+  "info": {
+    "_postman_id": "6e6fadca-e3d5-44fc-81bb-7ef242a5a32d",
+    "name": "LJ Audio - Serverless Integration Layer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "752706"
+  },
+  "item": [
+    {
+      "name": "POST Event Gateway (3rd Party Warehouse)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"detail\": {\n    \"metadata\": {\n      \"domain\": \"warehouse\",\n      \"source\": \"warehouse-domain\",\n      \"type\": \"ShippingLabelGenerated\",\n      \"id\": \"lg5d51cf-0b41-4461-9fcd-5fw6a5354cc7\", \n      \"correlationId\": \"e7e8d4c1-0db7-4368-ab5a-a0d1dd0968e1\"\n    },\n    \"data\": {\n      \"deliveryNoteId\": \"lg5d51cf-0b41-4461-9fcd-5fw6a5354cc7\",\n      \"deliveryNoteNumber\": \"DN12345\",\n      \"orderNumber\": \"99975532-45e4-4a6b-af3e-21c3a4dac4ab\",\n      \"customerId\": \"6fc292ce-059b-469a-94ea-a9860d0604ab\",\n      \"items\": [\n        {\n          \"productId\": \"PROD001\",\n          \"productName\": \"Wireless Headphones\",\n          \"quantity\": 1,\n          \"unitPrice\": 149.99,\n          \"totalPrice\": 149.99\n        },\n        {\n          \"productId\": \"PROD002\",\n          \"productName\": \"Bluetooth Speaker\",\n          \"quantity\": 2,\n          \"unitPrice\": 175.00,\n          \"totalPrice\": 350.00 \n        }\n      ],\n      \"totalValue\": 499.99,\n      \"deliveryAddress\": {\n        \"street\": \"123 Main St\",\n        \"city\": \"Anytown\",\n        \"state\": \"ABC\",\n        \"postalCode\": \"12345\",\n        \"country\": \"XYZ\"\n      },\n      \"deliveryDate\": \"2024-03-20T12:00:00Z\"\n    }\n  }\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://your-event-gateway-rest-id.execute-api.eu-west-1.amazonaws.com/prod/v1/events/",
+          "protocol": "https",
+          "host": [
+            "your-event-gateway-rest-id",
+            "execute-api",
+            "eu-west-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": ["prod", "v1", "events", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Order (Orders Service)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n      \"orderNumber\": \"99975532-45e4-4a6b-af3e-21c3a4dac4ab\",\n      \"customerId\": \"6fc292ce-059b-469a-94ea-a9860d0604ab\",\n      \"totalValue\": 499.99,\n      \"items\": [\n        {\n          \"productId\": \"PROD001\",\n          \"productName\": \"Wireless Headphones\",\n          \"quantity\": 1,\n          \"unitPrice\": 149.99\n        },\n        {\n          \"productId\": \"PROD002\",\n          \"productName\": \"Bluetooth Speaker\",\n          \"quantity\": 2,\n          \"unitPrice\": 175.00\n        }\n      ]\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://your-orders-service-rest-id.execute-api.eu-west-1.amazonaws.com/prod/v1/orders/",
+          "protocol": "https",
+          "host": [
+            "your-orders-service-rest-id",
+            "execute-api",
+            "eu-west-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": ["prod", "v1", "orders", ""]
+        }
+      },
+      "response": []
+    }
+  ]
+}
